@@ -3,7 +3,7 @@ $db_server = '10.211.55.16'
 
 $header = @{'Content-Type'= 'application/json'}
 
-$Body = '{"query":["=","name","hostnam"]}'
+$Body = '{}'
 
 $cert = get-pfxCertificate Z:\Desktop\api-pupcert.pfx
 
