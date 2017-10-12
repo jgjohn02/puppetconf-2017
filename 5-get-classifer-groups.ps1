@@ -27,7 +27,8 @@ $token = $result.token
 $auth_header = $headers = @{"X-Authentication" = $token}
 $uri = "https://${pe_console_server}:4433/classifier-api/v1/groups"
 
-$a = Invoke-RestMethod -Uri $uri -method Get -Headers $auth_header 
+$a = Invoke-RestMethod -Uri $uri -method Get -Headers $auth_header
+$raw = Invoke-WebRequest -Uri $uri -method Get -Headers $auth_header
 
 $a
 
@@ -36,3 +37,5 @@ $a
 
 $a | where environment -eq "production" | select name
 $a | where environment -eq "production" | where name -NotLike "PE*" | select name
+
+$raw.Content 

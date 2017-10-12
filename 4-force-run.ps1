@@ -47,3 +47,5 @@ $check_url = "https://${console_server}:8143/orchestrator/v1/jobs/$jobid"
 $check_status = Invoke-RestMethod -Uri $check_url -Headers $run_puppet_header -Method get
 
 $check_status
+
+$check_status.status

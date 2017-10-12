@@ -31,12 +31,14 @@ $groups = Invoke-RestMethod -Uri $classifer_api_endpoint -Headers $auth_header -
 
 $allnode_id = ($groups | where name -eq "All Nodes").id
 
-$group_to_add = @{
-    "name"        = "2humana_clasgroups"
-    "description" = "group to hold roles and profiles2"
-    "parent"      = $allnode_id
-    "classes"     = @{}
+$group_to_add = @"
+{
+    "name": "4humana_classgroups",
+    "parent": "$allnode_id",
+    "description": "group to hold roles and profiles3",
+    "classes": {}
 }
+"@
 
 $header_for_groupadd = @{
     "X-Authentication" = $token
@@ -44,7 +46,8 @@ $header_for_groupadd = @{
 }
 
 
-$group_to_add = $group_to_add | ConvertTo-Json
+#$group_to_add = $group_to_add | ConvertTo-Json
 
 
-$add_group = Invoke-RestMethod -Uri $classifer_api_endpoint -Headers $header_for_groupadd -Body $group_to_add -Method Post
+$add_group = 
+Invoke-RestMethod -Uri $classifer_api_endpoint -Headers $header_for_groupadd -Body $group_to_add -Method Post
